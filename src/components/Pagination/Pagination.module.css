@@ -1,0 +1,28 @@
+.list {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.clickBtn {
+  display: inline-block;
+  border-radius: 40px;
+  background: orange; /* Оранжевий колір */
+  font-family: Arial, sans-serif; /* Змініть на потрібний вам шрифт */
+  color: #ffffff; /* Білий колір тексту */
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+}
+
+.clickBtn:hover,
+.clickBtn:focus {
+  animation: pulse 1s;
+  box-shadow: 0 0 0 2em transparent;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 orange; /* Оранжевий колір */
+  }
+}
