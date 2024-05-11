@@ -17,6 +17,7 @@ export default function EventModal({ isOpen, onRequestClose, eventId }) {
       const month = (today.getMonth() + 1).toString().padStart(2, "0");
       const year = today.getFullYear();
       const formattedToday = `${year}-${month}-${day}`;
+
       return setSelectedDate(formattedToday);
     }
     toast("Select a date in the past", {
@@ -37,6 +38,12 @@ export default function EventModal({ isOpen, onRequestClose, eventId }) {
   const onSubmit = async (values) => {
     addPeople(values, eventId);
     onRequestClose();
+    toast("Successfully!", {
+      style: {
+        color: "#ffffff",
+        backgroundColor: "green",
+      },
+    });
   };
 
   const customStyles = {

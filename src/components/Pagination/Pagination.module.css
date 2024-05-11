@@ -7,7 +7,7 @@
 .clickBtn {
   display: inline-block;
   border-radius: 40px;
-  background: orange; /* Оранжевий колір */
+  background: teal; /* Оранжевий колір */
   font-family: Arial, sans-serif; /* Змініть на потрібний вам шрифт */
   color: #ffffff; /* Білий колір тексту */
   padding: 10px 20px;
@@ -23,6 +23,6 @@
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 orange; /* Оранжевий колір */
+    box-shadow: 0 0 0 0 teal; /* Оранжевий колір */
   }
 }

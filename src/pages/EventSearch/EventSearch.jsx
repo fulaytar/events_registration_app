@@ -61,7 +61,6 @@ export default function EventSearch() {
         onSubmit={(e) => {
           e.preventDefault();
           submitOwnerFilter(query);
-          setQuery("");
         }}
         className={css.form}
       >

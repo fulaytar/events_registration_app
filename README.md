@@ -1,8 +1,18 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Даний проект зібраний через сборщик Vite.
+Використані бібліотеки:
+-react
+-axios
+-formik
+-react-loader-spinner
+-react-hot-toast
+-react-router-dom
+-react-modal
+-clsx
+-react-icons
+Окремо виконані компоненти та сторінки.
+Використаний API(mockapi.io)
+Під час завантаження сторінки Home виконується https на бекенд, щоб отримати масив об'єктів та зарендерити його.
+Є можливість зареєструватись на подію, завдяки react-modal яке відкривається з формою та має валідацію, а також закривається під час сабміту даних на сервер.
+Кнопка view по кліку переносить на сторінку певної подію і відображає хто зареєстрований, а якщо нікого немає, то виводить повідомлення 'Unfortunately, no one has registered.', а також оброблема помилка під час запиту на бекенд, коли немає даних або зник інтернет.
+На сторінці Event є поле вводу з кнопкою , завдяки якому можна робити пошук по конкретній події або даті. А також додаткова кнопка , коли зробили певний запит із подією, то можна вернутись на неї, завдаки useLocation() and UseSearchParams().
+Виконана пагінація відносно кількості подій на бекенді(максимум 100).
