@@ -1,0 +1,12 @@
+.item {
+  border: 1px solid;
+  padding: 10px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.btns {
+  display: flex;
+  justify-content: space-between;
+}

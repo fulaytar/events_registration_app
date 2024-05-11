@@ -1,0 +1,26 @@
+.btn {
+  display: block;
+  padding: 10px 15px;
+  margin: 0 auto;
+  background-color: #0056b3;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Ефект ховера */
+.btn:hover {
+  background-color: #007bff;
+}
+
+/* Ефект фокусу */
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+.btn:disabled {
+  display: none;
+}
