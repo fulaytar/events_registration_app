@@ -52,7 +52,7 @@ export const addPeople = async (person, eventId) => {
   }
 };
 
-export const getInfoPeople = async (eventId) => {
+export const getInfoPeople = async (eventId, query) => {
   try {
     const response = await axios.get(`/api/v1/events/${eventId}`);
     return response.data.people;

@@ -15,7 +15,6 @@ import toast, { Toaster } from "react-hot-toast";
 export default function PeopleDetails() {
   const { eventId } = useParams();
   const [people, setPeople] = useState([]);
-  const [copyPeople, setCopyPeople] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [empty, setEmpty] = useState(false);
@@ -35,7 +34,8 @@ export default function PeopleDetails() {
         },
       });
     }
-    setParams({ searchEvent: newFilter }); // Оновлення параметрів з використанням нового значення
+
+    setParams({ searchEvent: newFilter.trim() }); // Оновлення параметрів з використанням нового значення
   };
 
   useEffect(() => {
@@ -43,10 +43,29 @@ export default function PeopleDetails() {
       try {
         setIsLoading(true);
         const data = await getInfoPeople(eventId);
-        if (data.length === 0) {
-          return setEmpty(true);
+
+        // Використовуємо params, якщо вони є
+        if (params.has("searchEvent")) {
+          const filterQuery = params.get("searchEvent");
+          const filterInfo = data.filter(
+            (item) =>
+              item.fullName.includes(filterQuery) ||
+              item.email.includes(filterQuery)
+          );
+          filterInfo.length > 0
+            ? setPeople(filterInfo)
+            : toast("Unfortunately, no one has been found", {
+                style: {
+                  color: "#ffffff",
+                  backgroundColor: "#FF8C00",
+                },
+              });
+        } else {
+          if (data.length === 0) {
+            return setEmpty(true);
+          }
+          setPeople(data);
         }
-        setPeople(data);
       } catch (error) {
         setError(true);
       } finally {
@@ -54,8 +73,7 @@ export default function PeopleDetails() {
       }
     };
     getPeople();
-  }, [eventId]);
-
+  }, [eventId, params]);
   return (
     <div>
       <Link className={css.linkGoBack} to={backLink.current}>
@@ -64,7 +82,7 @@ export default function PeopleDetails() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          submitOwnerFilter(query);
+          submitOwnerFilter(query.trim());
           setQuery("");
         }}
         className={css.form}
@@ -72,7 +90,9 @@ export default function PeopleDetails() {
         <input
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setQuery(e.target.value);
+          }}
           name="search"
           className={css.input}
         />
