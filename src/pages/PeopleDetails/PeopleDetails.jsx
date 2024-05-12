@@ -67,7 +67,12 @@ export default function PeopleDetails() {
           setPeople(data);
         }
       } catch (error) {
-        setError(true);
+        return toast("Oops, an error occurred.", {
+          style: {
+            color: "#ffffff",
+            backgroundColor: "red",
+          },
+        });
       } finally {
         setIsLoading(false);
       }
