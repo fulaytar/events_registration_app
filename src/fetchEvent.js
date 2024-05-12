@@ -52,12 +52,16 @@ export const addPeople = async (person, eventId) => {
   }
 };
 
-export const getInfoPeople = async (eventId, query) => {
+export const getInfoPeople = async (eventId) => {
   try {
     const response = await axios.get(`/api/v1/events/${eventId}`);
     return response.data.people;
   } catch (error) {
-    console.error("Error", error);
-    throw error;
+    return toast("Oops, an error occurred.", {
+      style: {
+        color: "#ffffff",
+        backgroundColor: "red",
+      },
+    });
   }
 };
