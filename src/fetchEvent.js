@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
 axios.defaults.baseURL = "https://663f2632e3a7c3218a4c3cc7.mockapi.io";
 
@@ -35,9 +36,19 @@ export const addPeople = async (person, eventId) => {
     eventData.people.push(person);
 
     await axios.put(`/api/v1/events/${eventId}`, eventData);
+    return toast("Successfully!", {
+      style: {
+        color: "#ffffff",
+        backgroundColor: "green",
+      },
+    });
   } catch (error) {
-    console.error("Error:", error);
-    throw error;
+    return toast("Oops, an error occurred.", {
+      style: {
+        color: "#ffffff",
+        backgroundColor: "red",
+      },
+    });
   }
 };
 

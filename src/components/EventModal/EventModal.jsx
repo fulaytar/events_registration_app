@@ -38,12 +38,6 @@ export default function EventModal({ isOpen, onRequestClose, eventId }) {
   const onSubmit = async (values) => {
     addPeople(values, eventId);
     onRequestClose();
-    toast("Successfully!", {
-      style: {
-        color: "#ffffff",
-        backgroundColor: "green",
-      },
-    });
   };
 
   const customStyles = {
