@@ -36,6 +36,7 @@ export default function EventModal({ isOpen, onRequestClose, eventId }) {
   };
 
   const onSubmit = async (values) => {
+    values.dateOfBirth = selectedDate;
     addPeople(values, eventId);
     onRequestClose();
   };
