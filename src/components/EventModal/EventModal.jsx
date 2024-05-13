@@ -7,25 +7,23 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function EventModal({ isOpen, onRequestClose, eventId }) {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(""); // Змінюємо на пустий рядок
 
   const validateDate = (value) => {
     const selected = new Date(value);
-    let today = new Date();
+    const today = new Date();
     if (selected < today) {
-      const day = today.getDate().toString().padStart(2, "0");
-      const month = (today.getMonth() + 1).toString().padStart(2, "0");
-      const year = today.getFullYear();
-      const formattedToday = `${year}-${month}-${day}`;
-
-      return setSelectedDate(formattedToday);
+      setSelectedDate(value); // Залишаємо обрану дату без змін, якщо вона в минулому
+      return value;
+    } else {
+      toast.error("Please select a past date", {
+        style: {
+          color: "#ffffff",
+          backgroundColor: "#FF8C00",
+        },
+      });
+      return ""; // Повертаємо порожній рядок, якщо дата в майбутньому
     }
-    toast("Select a date in the past", {
-      style: {
-        color: "#ffffff",
-        backgroundColor: "#FF8C00",
-      },
-    });
   };
 
   const initialValues = {
@@ -36,6 +34,7 @@ export default function EventModal({ isOpen, onRequestClose, eventId }) {
   };
 
   const onSubmit = async (values) => {
+    // Форматуємо обраний користувачем dateOfBirth перед відправкою
     values.dateOfBirth = selectedDate;
     addPeople(values, eventId);
     onRequestClose();
@@ -43,7 +42,7 @@ export default function EventModal({ isOpen, onRequestClose, eventId }) {
 
   const customStyles = {
     overlay: {
-      backgroundColor: "rgba(0, 0, 0, 0.7)", // темний фон з прозорістю
+      backgroundColor: "rgba(0, 0, 0, 0.7)",
     },
     content: {
       top: "50%",
@@ -52,17 +51,18 @@ export default function EventModal({ isOpen, onRequestClose, eventId }) {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      border: "none", // видаляємо рамку
-      borderRadius: "10px", // закруглені кути
-      maxWidth: "90%", // максимальна ширина контенту
-      maxHeight: "90%", // максимальна висота контенту
-      overflow: "hidden", // ховаємо зайвий контент, який може виходити за межі
-      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", // тінь для ефекту підняття
-      display: "flex", // використовуємо flex для центрування фото
-      alignItems: "center", // центруємо по вертикалі
-      justifyContent: "center", // центруємо по горизонталі
+      border: "none",
+      borderRadius: "10px",
+      maxWidth: "90%",
+      maxHeight: "90%",
+      overflow: "hidden",
+      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     },
   };
+
   return (
     <>
       <Modal
