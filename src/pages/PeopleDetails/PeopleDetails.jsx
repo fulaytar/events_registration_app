@@ -16,7 +16,6 @@ export default function PeopleDetails() {
   const { eventId } = useParams();
   const [people, setPeople] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
   const [empty, setEmpty] = useState(false);
   const [query, setQuery] = useState("");
 
@@ -112,7 +111,6 @@ export default function PeopleDetails() {
             <PeopleInfo key={index} info={infoPeople} />
           ))}
       </ul>
-      {error && <ErrorMessage message={"Oops, an error occurred."} />}
       {empty && (
         <ErrorMessage message={"Unfortunately, no one has registered."} />
       )}
