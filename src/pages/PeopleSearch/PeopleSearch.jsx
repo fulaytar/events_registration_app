@@ -84,7 +84,7 @@ export default function PeopleSearch() {
           People search
         </button>
       </form>
-      {isLoading && dataPeople.length > 0 && <Loader />}
+      {isLoading && <Loader />}
       {dataPeople.length > 0 && <SearchList people={dataPeople} />}
       {error && (
         <ErrorMessage
