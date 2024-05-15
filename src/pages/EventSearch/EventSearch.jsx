@@ -72,7 +72,7 @@ export default function EventSearch() {
           className={css.input}
         />
         <button type="submit" className={css.button}>
-          Search
+          Event search
         </button>
       </form>
       {isLoading && <Loader />}

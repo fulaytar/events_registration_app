@@ -16,6 +16,9 @@ export default function Navigation() {
         <NavLink to="/event" className={getNavLinkClass}>
           Event
         </NavLink>
+        <NavLink to="/peopleSearch" className={getNavLinkClass}>
+          People
+        </NavLink>
       </nav>
     </>
   );

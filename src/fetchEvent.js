@@ -56,3 +56,16 @@ export const getInfoPeople = async (eventId) => {
   const response = await axios.get(`/api/v1/events/${eventId}`);
   return response.data.people;
 };
+
+export const getSearchPeople = async (search) => {
+  const response = await axios.get("/api/v1/events");
+  const data = response.data.map((element) => ({
+    ...element,
+    people: element.people.filter(
+      (person) => person.fullName === search || person.email === search
+    ),
+  }));
+
+  const filterData = data.filter((item) => item.people.length > 0);
+  return filterData;
+};

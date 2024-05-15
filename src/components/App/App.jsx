@@ -4,6 +4,7 @@ import HomePage from "../../pages/Home/Home";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import EventSearch from "../../pages/EventSearch/EventSearch";
 import PeopleDetails from "../../pages/PeopleDetails/PeopleDetails";
+import PeopleSearch from "../../pages/PeopleSearch/PeopleSearch";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/event" element={<EventSearch />} />
         <Route path="/event/:eventId" element={<PeopleDetails />} />
+        <Route path="/peopleSearch" element={<PeopleSearch />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Layout>
