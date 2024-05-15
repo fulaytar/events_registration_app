@@ -6,7 +6,7 @@ import SearchList from "../../components/SearchList/SearchList";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
 import { useSearchParams } from "react-router-dom";
-import { ErrorMessage } from "formik";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 export default function PeopleSearch() {
   const [search, setSearch] = useState("");
@@ -31,6 +31,7 @@ export default function PeopleSearch() {
   useEffect(() => {
     const SearchPeople = async () => {
       try {
+        setError(false);
         setIsLoading(true);
 
         const searchRequest = params.get("searchPeople");
@@ -41,6 +42,7 @@ export default function PeopleSearch() {
         }
 
         const data = await getSearchPeople(searchRequest);
+
         if (data.length === 0) {
           setDataPeople([]);
           return toast("Unfortunately, not found.", {
@@ -53,13 +55,8 @@ export default function PeopleSearch() {
           setDataPeople(data);
         }
       } catch (error) {
-        toast("Oops, an error occurred.", {
-          style: {
-            color: "#ffffff",
-            backgroundColor: "red",
-          },
-        });
         setError(true);
+        setDataPeople([]);
       } finally {
         setIsLoading(false);
       }
@@ -91,7 +88,7 @@ export default function PeopleSearch() {
       {dataPeople.length > 0 && <SearchList people={dataPeople} />}
       {error && (
         <ErrorMessage
-          message={"Failed to search event. Please try again later."}
+          message={"Failed to search people. Please try again later."}
         />
       )}
       <Toaster position="top-right" containerStyle={{ zIndex: 99999999 }} />
