@@ -32,6 +32,7 @@ export default function PeopleSearch() {
     const SearchPeople = async () => {
       try {
         setError(false);
+        setDataPeople([]);
         setIsLoading(true);
 
         const searchRequest = params.get("searchPeople");
