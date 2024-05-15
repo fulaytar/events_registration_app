@@ -59,14 +59,17 @@ export const getInfoPeople = async (eventId) => {
 
 export const getSearchPeople = async (search) => {
   const response = await axios.get("/api/v1/events");
-  const data = response.data.map((element) => ({
-    ...element,
-    people: element.people.filter(
-      (person) =>
-        person.fullName.includes(search) || person.email.includes(search)
-    ),
-  }));
+  const data = response.data
+    .map((element) => ({
+      ...element,
+      people: element.people.filter(
+        (person) =>
+          (person.fullName &&
+            person.fullName.toLowerCase() === search.toLowerCase()) ||
+          (person.email && person.email.toLowerCase() === search.toLowerCase())
+      ),
+    }))
+    .filter((element) => element.people.length > 0); // Залишаємо тільки ті події, в яких є знайдені користувачі
 
-  const filterData = data.filter((item) => item.people.length > 0);
-  return filterData;
+  return data;
 };
