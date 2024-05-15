@@ -62,7 +62,8 @@ export const getSearchPeople = async (search) => {
   const data = response.data.map((element) => ({
     ...element,
     people: element.people.filter(
-      (person) => person.fullName === search || person.email === search
+      (person) =>
+        person.fullName.includes(search) || person.email.includes(search)
     ),
   }));
 
